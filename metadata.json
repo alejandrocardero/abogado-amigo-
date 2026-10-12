@@ -1,0 +1,6 @@
+{
+  "name": "Abogado Amigo - Inteligencia Legal MiPyME",
+  "description": "Asistente legal con RAG oficial y monitor de gacetas (DOF México, Gaceta Oficial Cuba y República Dominicana) diseñado para emprendedores y MiPyMEs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

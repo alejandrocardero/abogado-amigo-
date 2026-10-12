@@ -1,0 +1,93 @@
+- generic [ref=f1e3]:
+  - banner [ref=f1e4]:
+    - generic [ref=f1e5]:
+      - generic [ref=f1e6]:
+        - generic [ref=f1e18]:
+          - generic [ref=f1e19]: Abogado Amigo
+          - generic [ref=f1e20]: Inteligencia Legal MiPyME
+        - generic [ref=f1e21]:
+          - button "Estado de sincronización y alertas de gaceta" [ref=f1e22] [cursor=pointer]:
+            - generic [ref=f1e23]: notifications
+          - button "Configuración del modelo de IA" [ref=f1e27] [cursor=pointer]:
+            - generic [ref=f1e28]: settings
+          - button "Perfil del usuario y tenant MiPyME" [ref=f1e29] [cursor=pointer]:
+            - generic [ref=f1e30]: person
+      - generic [ref=f1e31]:
+        - 'status "País registrado: México. Moneda: MXN" [ref=f1e32]':
+          - generic [ref=f1e33]: 🇲🇽
+          - generic [ref=f1e34]: México
+          - generic [ref=f1e36]: MXN
+        - generic [ref=f1e37]: Agente Extractor PDF
+  - main [ref=f1e200]:
+    - generic [ref=f1e202]:
+      - generic [ref=f1e204]:
+        - generic [ref=f1e205]:
+          - generic [ref=f1e206]: smart_toy
+          - generic [ref=f1e208]:
+            - heading "Agente SLM Extractor de Documentos" [level=2] [ref=f1e209]
+            - paragraph [ref=f1e210]: Extracción real de texto · Detección de leyes · Exportación ZIP · Alejandro Lázaro
+        - generic [ref=f1e211]: 0 doc(s) · 0 fragmentos
+      - generic [ref=f1e212]:
+        - generic [ref=f1e213]:
+          - generic [ref=f1e214]:
+            - generic [ref=f1e215]: description
+            - text: 1. Seleccionar o Subir Documento
+          - generic [ref=f1e216]: 0 fragmentos indexables
+        - generic [ref=f1e217]:
+          - generic [ref=f1e218]: description
+          - heading "Sin documentos cargados" [level=3] [ref=f1e219]
+          - paragraph [ref=f1e220]: Carga un PDF, DOCX o archivo de texto para extraer su contenido real.
+          - button "upload_file Cargar Documento" [ref=f1e221] [cursor=pointer]:
+            - generic [ref=f1e222]: upload_file
+            - text: Cargar Documento
+        - generic [ref=f1e223]:
+          - generic [ref=f1e224]:
+            - generic [ref=f1e225]: upload_file
+            - generic [ref=f1e226]: ¿Otro documento? PDF, DOCX o texto plano.
+          - button "Subir" [ref=f1e227] [cursor=pointer]
+      - generic [ref=f1e228]:
+        - generic [ref=f1e230]:
+          - generic [ref=f1e231]: find_in_page
+          - text: 2. Criterio o Tema a Buscar en el Documento
+        - generic [ref=f1e232]:
+          - generic [aria-hidden]:
+            - generic: "Ejemplo: Vacaciones dignas, Estatutos societarios, Garantías mobiliarias..."
+          - textbox "Escribe tu criterio de búsqueda..." [ref=f1e233]
+        - generic [ref=f1e234]:
+          - generic [ref=f1e235]:
+            - generic [ref=f1e236]: lightbulb
+            - generic [ref=f1e237]: "Sugerencias:"
+          - generic [ref=f1e238]: Sube un documento y selecciona un modelo Ollama para generar sugerencias
+        - button "psychology Analizar Documento con Agente SLM (Tool Calling)" [disabled] [ref=f1e240] [cursor=pointer]:
+          - generic [ref=f1e241]: psychology
+          - generic [ref=f1e242]: Analizar Documento con Agente SLM (Tool Calling)
+      - generic [ref=f1e243]:
+        - generic [ref=f1e244]:
+          - generic [ref=f1e245]:
+            - generic [ref=f1e246]: folder_special
+            - text: 4. Referencias de Leyes Detectadas (0)
+          - button "archive Exportar Paquete ZIP" [ref=f1e247] [cursor=pointer]:
+            - generic [ref=f1e248]: archive
+            - text: Exportar Paquete ZIP
+        - generic [ref=f1e249]:
+          - generic [ref=f1e250]:
+            - generic [ref=f1e251]: folder_open
+            - generic [ref=f1e252]: /extracted/sin-documento/
+          - paragraph [ref=f1e254]: Selecciona un documento para ver sus referencias.
+  - navigation [ref=f1e255]:
+    - generic [ref=f1e256]:
+      - button "mark_chat_unread Asistente" [ref=f1e257] [cursor=pointer]:
+        - generic [ref=f1e258]: mark_chat_unread
+        - generic [ref=f1e259]: Asistente
+      - button "newspaper Gacetas" [ref=f1e260] [cursor=pointer]:
+        - generic [ref=f1e261]: newspaper
+        - generic [ref=f1e262]: Gacetas
+      - button "smart_toy Agente PDF" [ref=f1e263] [cursor=pointer]:
+        - generic [ref=f1e265]: smart_toy
+        - generic [ref=f1e266]: Agente PDF
+      - button "account_tree RAG LangGraph" [ref=f1e267] [cursor=pointer]:
+        - generic [ref=f1e268]: account_tree
+        - generic [ref=f1e269]: RAG LangGraph
+      - button "menu_book Leyes" [ref=f1e270] [cursor=pointer]:
+        - generic [ref=f1e271]: menu_book
+        - generic [ref=f1e272]: Leyes

@@ -1,0 +1,219 @@
+- generic [ref=f1e3]:
+  - banner [ref=f1e4]:
+    - generic [ref=f1e5]:
+      - generic [ref=f1e6]:
+        - generic [ref=f1e18]:
+          - generic [ref=f1e19]: Abogado Amigo
+          - generic [ref=f1e20]: Inteligencia Legal MiPyME
+        - generic [ref=f1e21]:
+          - button "Estado de sincronización y alertas de gaceta" [ref=f1e22] [cursor=pointer]:
+            - generic [ref=f1e23]: notifications
+          - button "Configuración del modelo de IA" [ref=f1e27] [cursor=pointer]:
+            - generic [ref=f1e28]: settings
+          - button "Perfil del usuario y tenant MiPyME" [ref=f1e29] [cursor=pointer]:
+            - generic [ref=f1e30]: person
+      - generic [ref=f1e31]:
+        - 'status "País registrado: México. Moneda: MXN" [ref=f1e32]':
+          - generic [ref=f1e33]: 🇲🇽
+          - generic [ref=f1e34]: México
+          - generic [ref=f1e36]: MXN
+        - generic [ref=f1e37]: Agente Extractor PDF
+  - generic [ref=f1e911]:
+    - generic [ref=f1e912]:
+      - generic [ref=f1e913]:
+        - generic [ref=f1e914]: memory
+        - generic [ref=f1e916]:
+          - heading "Configuración de Modelos" [level=3] [ref=f1e917]
+          - paragraph [ref=f1e918]: 9 modelos locales
+      - button "Cerrar configuración de modelos" [ref=f1e919] [cursor=pointer]:
+        - generic [ref=f1e920]: close
+    - generic [ref=f1e921]:
+      - generic [ref=f1e922]:
+        - generic [ref=f1e923]:
+          - generic [ref=f1e924]: Ollama Base URL
+          - button "Restaurar http://localhost:11434" [ref=f1e1074] [cursor=pointer]
+        - textbox "http://localhost:11434" [ref=f1e926]: http://localhost:59999
+      - generic [ref=f1e927]:
+        - button "travel_explore Descubrir Modelos" [ref=f1e928] [cursor=pointer]:
+          - generic [ref=f1e929]: travel_explore
+          - generic [ref=f1e930]: Descubrir Modelos
+        - generic [ref=f1e931]: Escanea tu instancia local de Ollama
+      - generic [ref=f1e932]:
+        - heading "Modelos Detectados" [level=4] [ref=f1e933]
+        - radio "gpt-oss:120b-cloud 0 MB Disponible 3249 ms 117B MXFP4 network_ping Probar Conexión" [ref=f1e934] [cursor=pointer]:
+          - generic [ref=f1e937]:
+            - generic [ref=f1e938]:
+              - generic [ref=f1e939]:
+                - strong [ref=f1e941]: gpt-oss:120b-cloud
+                - generic [ref=f1e942]: 0 MB
+              - generic [ref=f1e943]:
+                - text: Disponible
+                - generic [ref=f1e945]: 3249 ms
+            - generic [ref=f1e946]:
+              - generic [ref=f1e947]: 117B
+              - generic [ref=f1e948]: MXFP4
+            - button "network_ping Probar Conexión" [ref=f1e949]:
+              - generic [ref=f1e950]: network_ping
+              - generic [ref=f1e951]: Probar Conexión
+        - radio "glm-4.7:cloud 0 MB No disponible HTTP 410 Gone network_ping Probar Conexión" [ref=f1e952] [cursor=pointer]:
+          - generic [ref=f1e955]:
+            - generic [ref=f1e956]:
+              - generic [ref=f1e957]:
+                - strong [ref=f1e959]: glm-4.7:cloud
+                - generic [ref=f1e960]: 0 MB
+              - generic [ref=f1e961]: No disponible
+            - paragraph [ref=f1e963]: HTTP 410 Gone
+            - button "network_ping Probar Conexión" [ref=f1e964]:
+              - generic [ref=f1e965]: network_ping
+              - generic [ref=f1e966]: Probar Conexión
+        - radio "qwen3-vl:235b-cloud 0 MB qwen3vl 235B FP8 network_ping Probar Conexión" [ref=f1e967] [cursor=pointer]:
+          - generic [ref=f1e970]:
+            - generic [ref=f1e972]:
+              - strong [ref=f1e974]: qwen3-vl:235b-cloud
+              - generic [ref=f1e975]: 0 MB
+            - generic [ref=f1e976]:
+              - generic [ref=f1e977]: qwen3vl
+              - generic [ref=f1e978]: 235B
+              - generic [ref=f1e979]: FP8
+            - button "network_ping Probar Conexión" [ref=f1e980]:
+              - generic [ref=f1e981]: network_ping
+              - generic [ref=f1e982]: Probar Conexión
+        - radio "gpt-oss:20b-cloud 0 MB gptoss 20.9B MXFP4 network_ping Probar Conexión" [ref=f1e983] [cursor=pointer]:
+          - generic [ref=f1e986]:
+            - generic [ref=f1e988]:
+              - strong [ref=f1e990]: gpt-oss:20b-cloud
+              - generic [ref=f1e991]: 0 MB
+            - generic [ref=f1e992]:
+              - generic [ref=f1e993]: gptoss
+              - generic [ref=f1e994]: 20.9B
+              - generic [ref=f1e995]: MXFP4
+            - button "network_ping Probar Conexión" [ref=f1e996]:
+              - generic [ref=f1e997]: network_ping
+              - generic [ref=f1e998]: Probar Conexión
+        - radio "deepseek-v4-pro:cloud 0 MB network_ping Probar Conexión" [ref=f1e999] [cursor=pointer]:
+          - generic [ref=f1e1002]:
+            - generic [ref=f1e1004]:
+              - strong [ref=f1e1006]: deepseek-v4-pro:cloud
+              - generic [ref=f1e1007]: 0 MB
+            - button "network_ping Probar Conexión" [ref=f1e1008]:
+              - generic [ref=f1e1009]: network_ping
+              - generic [ref=f1e1010]: Probar Conexión
+        - radio "minimax-m2.7:cloud 0 MB minimax network_ping Probar Conexión" [ref=f1e1011] [cursor=pointer]:
+          - generic [ref=f1e1014]:
+            - generic [ref=f1e1016]:
+              - strong [ref=f1e1018]: minimax-m2.7:cloud
+              - generic [ref=f1e1019]: 0 MB
+            - generic [ref=f1e1020]: minimax
+            - button "network_ping Probar Conexión" [ref=f1e1022]:
+              - generic [ref=f1e1023]: network_ping
+              - generic [ref=f1e1024]: Probar Conexión
+        - radio "deepseek-v3.1:671b-cloud 0 MB deepseek2 671.0B FP8_E4M3 network_ping Probar Conexión" [ref=f1e1025] [cursor=pointer]:
+          - generic [ref=f1e1028]:
+            - generic [ref=f1e1030]:
+              - strong [ref=f1e1032]: deepseek-v3.1:671b-cloud
+              - generic [ref=f1e1033]: 0 MB
+            - generic [ref=f1e1034]:
+              - generic [ref=f1e1035]: deepseek2
+              - generic [ref=f1e1036]: 671.0B
+              - generic [ref=f1e1037]: FP8_E4M3
+            - button "network_ping Probar Conexión" [ref=f1e1038]:
+              - generic [ref=f1e1039]: network_ping
+              - generic [ref=f1e1040]: Probar Conexión
+        - radio "glm-5:cloud 0 MB network_ping Probar Conexión" [ref=f1e1041] [cursor=pointer]:
+          - generic [ref=f1e1044]:
+            - generic [ref=f1e1046]:
+              - strong [ref=f1e1048]: glm-5:cloud
+              - generic [ref=f1e1049]: 0 MB
+            - button "network_ping Probar Conexión" [ref=f1e1050]:
+              - generic [ref=f1e1051]: network_ping
+              - generic [ref=f1e1052]: Probar Conexión
+        - radio "glm-4.6:cloud 0 MB glm4 355B FP8 network_ping Probar Conexión" [ref=f1e1053] [cursor=pointer]:
+          - generic [ref=f1e1056]:
+            - generic [ref=f1e1058]:
+              - strong [ref=f1e1060]: glm-4.6:cloud
+              - generic [ref=f1e1061]: 0 MB
+            - generic [ref=f1e1062]:
+              - generic [ref=f1e1063]: glm4
+              - generic [ref=f1e1064]: 355B
+              - generic [ref=f1e1065]: FP8
+            - button "network_ping Probar Conexión" [ref=f1e1066]:
+              - generic [ref=f1e1067]: network_ping
+              - generic [ref=f1e1068]: Probar Conexión
+    - generic [ref=f1e1069]:
+      - button "save Guardar" [active] [ref=f1e1070] [cursor=pointer]:
+        - generic [ref=f1e1071]: save
+        - generic [ref=f1e1072]: Guardar
+      - button "Cancelar" [ref=f1e1073] [cursor=pointer]
+  - main [ref=f1e200]:
+    - generic [ref=f1e857]:
+      - generic [ref=f1e859]:
+        - generic [ref=f1e860]:
+          - generic [ref=f1e861]: smart_toy
+          - generic [ref=f1e863]:
+            - heading "Agente SLM Extractor de Documentos" [level=2] [ref=f1e864]
+            - paragraph [ref=f1e865]: Extracción real de texto · Detección de leyes · Exportación ZIP · Alejandro Lázaro
+        - generic [ref=f1e866]: 0 doc(s) · 0 fragmentos
+      - generic [ref=f1e867]:
+        - generic [ref=f1e868]:
+          - generic [ref=f1e869]:
+            - generic [ref=f1e870]: description
+            - text: 1. Seleccionar o Subir Documento
+          - generic [ref=f1e871]: 0 fragmentos indexables
+        - generic [ref=f1e872]:
+          - generic [ref=f1e873]: description
+          - heading "Sin documentos cargados" [level=3] [ref=f1e874]
+          - paragraph [ref=f1e875]: Carga un PDF, DOCX o archivo de texto para extraer su contenido real.
+          - button "upload_file Cargar Documento" [ref=f1e876] [cursor=pointer]:
+            - generic [ref=f1e877]: upload_file
+            - text: Cargar Documento
+        - generic [ref=f1e878]:
+          - generic [ref=f1e879]:
+            - generic [ref=f1e880]: upload_file
+            - generic [ref=f1e881]: ¿Otro documento? PDF, DOCX o texto plano.
+          - button "Subir" [ref=f1e882] [cursor=pointer]
+      - generic [ref=f1e883]:
+        - generic [ref=f1e885]:
+          - generic [ref=f1e886]: find_in_page
+          - text: 2. Criterio o Tema a Buscar en el Documento
+        - generic [ref=f1e887]:
+          - generic [aria-hidden]:
+            - generic: "Ejemplo: Vacaciones dignas, Estatutos societarios, Garantías mobiliarias..."
+          - textbox "Escribe tu criterio de búsqueda..." [ref=f1e888]
+        - generic [ref=f1e889]:
+          - generic [ref=f1e890]:
+            - generic [ref=f1e891]: lightbulb
+            - generic [ref=f1e892]: "Sugerencias:"
+          - generic [ref=f1e893]: Sube un documento y selecciona un modelo Ollama para generar sugerencias
+        - button "psychology Analizar Documento con Agente SLM (Tool Calling)" [disabled] [ref=f1e895] [cursor=pointer]:
+          - generic [ref=f1e896]: psychology
+          - generic [ref=f1e897]: Analizar Documento con Agente SLM (Tool Calling)
+      - generic [ref=f1e898]:
+        - generic [ref=f1e899]:
+          - generic [ref=f1e900]:
+            - generic [ref=f1e901]: folder_special
+            - text: 4. Referencias de Leyes Detectadas (0)
+          - button "archive Exportar Paquete ZIP" [ref=f1e902] [cursor=pointer]:
+            - generic [ref=f1e903]: archive
+            - text: Exportar Paquete ZIP
+        - generic [ref=f1e904]:
+          - generic [ref=f1e905]:
+            - generic [ref=f1e906]: folder_open
+            - generic [ref=f1e907]: /extracted/sin-documento/
+          - paragraph [ref=f1e909]: Selecciona un documento para ver sus referencias.
+  - navigation [ref=f1e255]:
+    - generic [ref=f1e256]:
+      - button "mark_chat_unread Asistente" [ref=f1e257] [cursor=pointer]:
+        - generic [ref=f1e258]: mark_chat_unread
+        - generic [ref=f1e259]: Asistente
+      - button "newspaper Gacetas" [ref=f1e260] [cursor=pointer]:
+        - generic [ref=f1e261]: newspaper
+        - generic [ref=f1e262]: Gacetas
+      - button "smart_toy Agente PDF" [ref=f1e263] [cursor=pointer]:
+        - generic [ref=f1e265]: smart_toy
+        - generic [ref=f1e266]: Agente PDF
+      - button "account_tree RAG LangGraph" [ref=f1e267] [cursor=pointer]:
+        - generic [ref=f1e268]: account_tree
+        - generic [ref=f1e269]: RAG LangGraph
+      - button "menu_book Leyes" [ref=f1e270] [cursor=pointer]:
+        - generic [ref=f1e271]: menu_book
+        - generic [ref=f1e272]: Leyes

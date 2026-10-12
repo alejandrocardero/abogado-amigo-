@@ -1,0 +1,113 @@
+- generic [ref=e4]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - img "Abogado Amigo Logo"
+      - generic [ref=e7]:
+        - generic [ref=e8]: Abogado Amigo
+        - generic [ref=e9]: Inteligencia Legal MiPyME
+    - generic [ref=e10]:
+      - generic [ref=e11]: verified
+      - generic [ref=e12]: Sovereign RAG
+  - generic [ref=e13]:
+    - generic [ref=e14]:
+      - button "person_add Registro MiPyME" [ref=e15] [cursor=pointer]:
+        - generic [ref=e17]: person_add
+        - generic [ref=e18]: Registro MiPyME
+      - button "login Iniciar Sesión" [ref=e19] [cursor=pointer]:
+        - generic [ref=e20]: login
+        - generic [ref=e21]: Iniciar Sesión
+    - generic [ref=e22]:
+      - text: Alta de Tenant Empresarial
+      - heading "Configura el blindaje legal de tu negocio" [level=1] [ref=e23]
+      - paragraph [ref=e24]: Indexación directa con el Diario Oficial (DOF México, Gaceta de Cuba y República Dominicana).
+    - generic [ref=e25]:
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e28]:
+            - generic [ref=e29]: Nombre del Usuario / Representante
+            - generic [ref=e30]: Obligatorio
+          - generic [ref=e31]:
+            - generic [ref=e32]: badge
+            - textbox "Ej. Alejandro Lázaro" [ref=e33]
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - generic [ref=e36]: Nombre del Negocio / MiPyME
+            - generic [ref=e37]: Obligatorio
+          - generic [ref=e38]:
+            - generic [ref=e39]: storefront
+            - textbox "Ej. Cafetería Especialidad CDMX S.A.S." [ref=e40]
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - generic [ref=e43]: País / Jurisdicción
+            - generic [ref=e44]:
+              - button "🇲🇽 MX" [ref=e45] [cursor=pointer]:
+                - generic [ref=e46]: 🇲🇽
+                - generic [ref=e47]: MX
+              - button "🇨🇺 CU" [ref=e48] [cursor=pointer]:
+                - generic [ref=e49]: 🇨🇺
+                - generic [ref=e50]: CU
+              - button "🇩🇴 DO" [ref=e51] [cursor=pointer]:
+                - generic [ref=e52]: 🇩🇴
+                - generic [ref=e53]: DO
+          - generic [ref=e54]:
+            - generic [ref=e55]: Moneda del País
+            - generic [ref=e56]:
+              - generic [ref=e57]: payments
+              - combobox [ref=e58] [cursor=pointer]:
+                - option "MXN · Peso Mexicano ($)" [selected]
+                - option "USD · Dólar Estadounidense ($)"
+        - generic [ref=e59]:
+          - generic [ref=e60]:
+            - generic [ref=e61]: 🇲🇽
+            - generic [ref=e62]:
+              - text: "Gaceta vinculada:"
+              - strong [ref=e63]: Diario Oficial de la Federación (DOF)
+          - generic [ref=e64]: MXN
+      - generic [ref=e65]:
+        - generic [ref=e66]:
+          - generic [ref=e67]: Correo Electrónico Oficial
+          - generic [ref=e68]: gmail.com · yahoo.com · outlook.com
+        - generic [ref=e69]:
+          - generic [ref=e70]: mail
+          - textbox "usuario@gmail.com o @yahoo.com" [ref=e71]
+      - generic [ref=e72]:
+        - generic [ref=e73]: Contraseña de Seguridad
+        - generic [ref=e75]:
+          - generic [ref=e76]: lock
+          - textbox "Mínimo 8 caracteres, mayúscula, número y símbolo" [ref=e77]
+          - button "Mostrar u ocultar contraseña" [ref=e78] [cursor=pointer]:
+            - generic [ref=e79]: visibility
+        - generic [ref=e85]:
+          - generic [ref=e86]:
+            - generic [ref=e87]: radio_button_unchecked
+            - generic [ref=e88]: Mín. 8 caracteres
+          - generic [ref=e89]:
+            - generic [ref=e90]: radio_button_unchecked
+            - generic [ref=e91]: Mayúscula y minúscula
+          - generic [ref=e92]:
+            - generic [ref=e93]: radio_button_unchecked
+            - generic [ref=e94]: Al menos 1 número
+          - generic [ref=e95]:
+            - generic [ref=e96]: radio_button_unchecked
+            - generic [ref=e97]: Símbolo (!@#$%)
+      - generic [ref=e98]:
+        - generic [ref=e100] [cursor=pointer]:
+          - checkbox "Acepto los Términos y Condiciones de Uso, el Aviso de Alcance Normativo y la Política de Privacidad Sovereign RAG." [ref=e101]
+          - generic [ref=e102]:
+            - text: Acepto los
+            - strong [ref=e103]: Términos y Condiciones de Uso
+            - text: ", el Aviso de Alcance Normativo y la Política de Privacidad Sovereign RAG."
+        - generic [ref=e104]:
+          - button "expand_more Ver Resumen Legal" [ref=e105] [cursor=pointer]:
+            - generic [ref=e106]: expand_more
+            - generic [ref=e107]: Ver Resumen Legal
+          - button "gavel Leer Términos y Condiciones" [ref=e108] [cursor=pointer]:
+            - generic [ref=e109]: gavel
+            - generic [ref=e110]: Leer Términos y Condiciones
+      - button "verified_user Crear Cuenta MiPyME e Ingresar" [ref=e111] [cursor=pointer]:
+        - generic [ref=e112]: verified_user
+        - generic [ref=e113]: Crear Cuenta MiPyME e Ingresar
+      - button "bolt Entrar con Cuenta Demo (Cafetería CDMX · MXN)" [ref=e114] [cursor=pointer]:
+        - generic [ref=e115]: bolt
+        - generic [ref=e116]: Entrar con Cuenta Demo (Cafetería CDMX · MXN)
+  - paragraph [ref=e118]: "Abogado Amigo v2.4 · Cifrado TLS 1.3 · Jurisdicciones: 🇲🇽 MX · 🇨🇺 CU · 🇩🇴 DO"
