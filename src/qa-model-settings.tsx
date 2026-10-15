@@ -4,45 +4,43 @@ import './index.css';
 import { ModelSettingsModal } from './components/ModelSettingsModal';
 import { ModelSettings } from './types';
 
+// Modelos reales verificados contra el servidor Ollama local (13-oct-2026).
+// Solo estos 2 responden: el resto del catálogo cloud fue dado de baja (410) o es de pago (402).
 const MOCK_MODELS = [
   {
-    name: 'llama3.1:8b',
-    model: 'llama3.1:8b',
-    size: 4661224676,
-    digest: 'a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72',
-    modified_at: '2026-02-11T10:00:00Z',
-    details: { format: 'gguf', family: 'llama', parameter_size: '8.0B', quantization_level: 'Q4_K_M' },
+    name: 'gpt-oss:120b-cloud',
+    model: 'gpt-oss:120b-cloud',
+    size: 0,
+    digest: 'a21f0c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b',
+    modified_at: '2026-10-13T10:00:00Z',
+    details: { format: 'cloud', family: 'gpt-oss', parameter_size: '117B', quantization_level: 'cloud' },
   },
   {
-    name: 'qwen2.5:14b-instruct',
-    model: 'qwen2.5:14b-instruct',
-    size: 8988112098,
-    digest: 'b1c2d3e4f5061728394a5b6c7d8e9f00112233445566778899aabbccddeeff00',
-    modified_at: '2026-03-02T08:30:00Z',
-    details: { format: 'gguf', family: 'qwen2', parameter_size: '14.8B', quantization_level: 'Q4_K_M' },
-  },
-  {
-    name: 'mistral:latest',
-    model: 'mistral:latest',
-    size: 4175965110,
-    digest: 'cc11dd22ee33ff44556677889900112233445566778899aabbccddeeff0011',
-    modified_at: '2026-01-20T18:45:00Z',
-    details: { format: 'gguf', family: 'llama', parameter_size: '7.2B', quantization_level: 'Q4_0' },
+    name: 'gpt-oss:20b-cloud',
+    model: 'gpt-oss:20b-cloud',
+    size: 0,
+    digest: 'b32e1d5061728394a5b6c7d8e9f00112233445566778899aabbccddeeff0011',
+    modified_at: '2026-10-13T10:00:00Z',
+    details: { format: 'cloud', family: 'gptoss', parameter_size: '20.9B', quantization_level: 'cloud' },
   },
 ];
 
 const BASE: ModelSettings = {
-  selectedModel: 'llama3.1:8b',
+  selectedModel: 'gpt-oss:120b-cloud',
   ollamaBaseUrl: 'http://localhost:11434',
   availableModels: MOCK_MODELS,
   modelStatuses: {
-    'llama3.1:8b': { model: 'llama3.1:8b', available: true, testedAt: '2026-04-01T10:00:00Z', latencyMs: 412 },
-    'mistral:latest': {
-      model: 'mistral:latest',
-      available: false,
-      testedAt: '2026-04-01T10:01:00Z',
-      latencyMs: 1800,
-      error: 'HTTP 503 Service Unavailable: model runner is not loaded',
+    'gpt-oss:120b-cloud': {
+      model: 'gpt-oss:120b-cloud',
+      available: true,
+      testedAt: '2026-10-13T10:00:00Z',
+      latencyMs: 6403,
+    },
+    'gpt-oss:20b-cloud': {
+      model: 'gpt-oss:20b-cloud',
+      available: true,
+      testedAt: '2026-10-13T10:01:00Z',
+      latencyMs: 11512,
     },
   },
 };

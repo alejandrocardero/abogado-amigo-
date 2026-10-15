@@ -61,9 +61,6 @@ interface AsistenteScreenProps {
   onOpenCitation: (c: LegalCitation) => void;
   onOpenDictamen: (o: LegalOpinion) => void;
   onNavigateToLaw: (law: LawCatalogItem) => void;
-  onOpenEstatuto: (label: string) => void;
-  onOpenObligacion: (label: string) => void;
-  onOpenSeguridadSocial: (label: string) => void;
   userProfile?: UserProfile | null;
 }
 
@@ -71,9 +68,6 @@ export const AsistenteScreen: React.FC<AsistenteScreenProps> = ({
   onOpenCitation,
   onOpenDictamen,
   onNavigateToLaw,
-  onOpenEstatuto,
-  onOpenObligacion,
-  onOpenSeguridadSocial,
   userProfile,
 }) => {
   const [messages, setMessages] = useState<ChatMessage[]>(() => storage.messages.get());
@@ -84,8 +78,33 @@ export const AsistenteScreen: React.FC<AsistenteScreenProps> = ({
   const [pendingAttachment, setPendingAttachment] = useState<{ name: string; snippet: string } | null>(
     null
   );
+  const [isNearBottom, setIsNearBottom] = useState(false);
+  const [canScrollPage, setCanScrollPage] = useState(false);
   const attachmentInputRef = useRef<HTMLInputElement | null>(null);
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
+
+  // Botón flotante: si estás arriba te lleva al fondo y viceversa.
+  useEffect(() => {
+    const update = () => {
+      const doc = document.documentElement;
+      setCanScrollPage(doc.scrollHeight - window.innerHeight > 240);
+      setIsNearBottom(window.innerHeight + window.scrollY >= doc.scrollHeight - 160);
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+  }, [messages.length]);
+
+  const handleScrollJump = () => {
+    window.scrollTo({
+      top: isNearBottom ? 0 : document.documentElement.scrollHeight,
+      behavior: 'smooth',
+    });
+  };
 
   const [indexedDocs, setIndexedDocs] = useState<{ chunks: TextChunk[] }[]>(() => storage.indexedDocs.get());
 
@@ -541,90 +560,6 @@ export const AsistenteScreen: React.FC<AsistenteScreenProps> = ({
                   </div>
                 )}
 
-                {/* GraphRAG Visual Flow (Cascada Normativa) */}
-                {opinion.graphConnections.length > 0 && (
-                  <div className="flex flex-col gap-2 pt-1">
-                    <div className="flex items-center justify-between">
-                      <span className="font-label-sm text-label-sm text-on-surface-variant font-bold uppercase tracking-wider">
-                        Correlación Normativa GraphRAG
-                      </span>
-                      <span className="font-label-sm text-label-sm text-secondary font-medium">
-                        {opinion.graphConnections.length} Conexiones
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
-{opinion.graphConnections.map((item, i) => (
-                        <React.Fragment key={i}>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              const label = item.label;
-                              const normalizedLabel = label.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-
-                              // Main three buttons - open dedicated modals
-                              if (normalizedLabel.includes('estatuto') || normalizedLabel.includes('principal')) {
-                                onOpenEstatuto(label);
-                              } else if (normalizedLabel.includes('obligacion') || normalizedLabel.includes('patronal')) {
-                                onOpenObligacion(label);
-                              } else if (normalizedLabel.includes('seguridad') || normalizedLabel.includes('social')) {
-                                onOpenSeguridadSocial(label);
-                              } else {
-                                // Fallback for other labels - search in local laws
-                                const laws = storage.laws.get();
-                                const searchTerm = label.toLowerCase();
-                                const law = (laws.find((l) =>
-                                  l.title.toLowerCase().includes(searchTerm) ||
-                                  l.code.toLowerCase().includes(searchTerm) ||
-                                  l.description.toLowerCase().includes(searchTerm)
-                                )) ?? null;
-
-                                if (law) {
-                                  onNavigateToLaw(law);
-                                } else {
-                                  const countryNames: Record<string, string> = { MX: 'México', CU: 'Cuba', DO: 'República Dominicana' };
-                                  const countryName = countryNames[jurisdiction] || jurisdiction;
-                                  showToast(`No hay información de "${label}" para ${countryName}. Actualiza gacetas oficiales o sube documentos en la pestaña Gacetas/Extractor.`);
-                                }
-                              }
-                            }}
-                            className={`flex-shrink-0 px-2.5 py-1.5 rounded-lg flex items-center gap-1 shadow-xs cursor-pointer ${
-                              item.type === 'primary'
-                                ? 'bg-primary text-on-primary btn-lift-primary'
-                                : item.type === 'secondary'
-                                ? 'bg-secondary-container text-on-secondary-container btn-lift-secondary'
-                                : 'bg-surface-container-high text-on-surface border border-outline-variant/20'
-                            }`}
-                            title={
-                              item.label === 'Estatuto Principal' ? 'Ver texto legal completo (Estatuto Principal)' :
-                              item.label === 'Obligación Patronal' ? 'Ver obligaciones concretas y pasos a seguir' :
-                              item.label === 'Seguridad Social' ? 'Ver requisitos, formularios, plazos y sanciones' :
-                              `Leer ${item.label} completo en el apartado Leyes`
-                            }
-                          >
-                            {item.icon && (
-                              <span
-                                className={`material-symbols-outlined text-[14px] ${
-                                  item.type === 'neutral' ? 'text-secondary' : ''
-                                }`}
-                              >
-                                {item.icon}
-                              </span>
-                            )}
-                            <span className="font-label-sm text-label-sm font-semibold">
-                              {item.label}
-                            </span>
-                          </button>
-                          {i < opinion.graphConnections.length - 1 && (
-                            <span className="material-symbols-outlined text-on-surface-variant text-[16px] flex-shrink-0">
-                              arrow_forward
-                            </span>
-                          )}
-                        </React.Fragment>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
                     {/* Business Takeaways Callout */}
                 {opinion.takeaways.length > 0 && (
                   <div className="bg-surface-container rounded-xl p-3.5 flex flex-col gap-2.5 border border-outline-variant/15">
@@ -723,6 +658,30 @@ export const AsistenteScreen: React.FC<AsistenteScreenProps> = ({
         })
       )}
       </div>
+
+      {/* Botón flotante: salto rápido inicio ⇄ fondo de la conversación */}
+      <AnimatePresence>
+        {canScrollPage && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            type="button"
+            aria-label={
+              isNearBottom
+                ? 'Ir al inicio de la conversación'
+                : 'Ir al final de la conversación'
+            }
+            title={isNearBottom ? 'Ir arriba' : 'Ir abajo'}
+            onClick={handleScrollJump}
+            className="fixed bottom-40 right-4 z-40 w-11 h-11 rounded-full bg-primary text-on-primary shadow-xl border border-white/10 flex items-center justify-center cursor-pointer hover:bg-primary/90"
+          >
+            <span className="material-symbols-outlined text-[22px]">
+              {isNearBottom ? 'keyboard_double_arrow_up' : 'keyboard_double_arrow_down'}
+            </span>
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       {/* Bottom Interactive Consultation Input Floating Bar */}
       <div className="fixed bottom-16 left-0 right-0 z-40 bg-[#f8f9ff]/94 backdrop-blur-xl px-margin pt-2.5 pb-3 shadow-[0_-6px_20px_rgba(11,28,48,0.06)] border-t border-outline-variant/20">

@@ -599,7 +599,7 @@ export const NotificationsModal: React.FC<NotificationsModalProps> = ({ isOpen, 
           animate="visible"
           exit="exit"
           onClick={onClose}
-          className="fixed inset-0 z-50 bg-black/55 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/55 backdrop-blur-sm flex items-start justify-center p-4 pt-28"
         >
           <motion.div
             variants={modalVariants}
@@ -607,9 +607,9 @@ export const NotificationsModal: React.FC<NotificationsModalProps> = ({ isOpen, 
             animate="visible"
             exit="exit"
             onClick={(e) => e.stopPropagation()}
-            className="bg-surface-container-lowest w-full max-w-md rounded-2xl shadow-2xl border border-outline-variant/25 overflow-hidden flex flex-col max-h-[80vh]"
+            className="bg-surface-container-lowest w-full max-w-md rounded-2xl shadow-2xl border border-outline-variant/25 overflow-hidden flex flex-col max-h-[calc(100dvh-9.5rem)]"
           >
-            <div className="p-4 bg-surface-container flex items-center justify-between border-b border-outline-variant/30">
+            <div className="p-4 bg-surface-container flex items-center justify-between border-b border-outline-variant/30 shrink-0">
               <div className="flex items-center gap-2.5">
                 <div className="w-9 h-9 rounded-xl bg-secondary-fixed text-secondary flex items-center justify-center">
                   <span className="material-symbols-outlined text-[20px]">notifications_active</span>
@@ -686,7 +686,7 @@ export const NotificationsModal: React.FC<NotificationsModalProps> = ({ isOpen, 
               )}
             </div>
 
-            <div className="p-3.5 bg-surface-container-low flex items-center justify-between gap-2 border-t border-outline-variant/20">
+            <div className="p-3.5 bg-surface-container-low flex items-center justify-between gap-2 border-t border-outline-variant/20 shrink-0">
               <button
                 type="button"
                 onClick={markAllAsRead}
@@ -748,7 +748,7 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
           animate="visible"
           exit="exit"
           onClick={onClose}
-          className="fixed inset-0 z-50 bg-black/55 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/55 backdrop-blur-sm flex items-start justify-center p-4 pt-28"
         >
           <motion.div
             variants={modalVariants}
@@ -756,9 +756,9 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
             animate="visible"
             exit="exit"
             onClick={(e) => e.stopPropagation()}
-            className="bg-surface-container-lowest w-full max-w-md rounded-2xl shadow-2xl border border-outline-variant/25 overflow-hidden flex flex-col"
+            className="bg-surface-container-lowest w-full max-w-md rounded-2xl shadow-2xl border border-outline-variant/25 overflow-hidden flex flex-col max-h-[calc(100dvh-9.5rem)]"
           >
-            <div className="p-4 bg-primary text-on-primary flex items-center justify-between">
+            <div className="p-4 bg-primary text-on-primary flex items-center justify-between shrink-0">
               <div className="flex items-center gap-2.5">
                 <div className="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center font-bold shadow-sm">
                   {initials}
@@ -780,7 +780,7 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
               </button>
             </div>
 
-            <div className="p-5 space-y-4 text-on-surface">
+            <div className="p-5 space-y-4 overflow-y-auto text-on-surface">
               <div className="grid grid-cols-2 gap-2.5 text-xs">
                 <div className="p-3 bg-surface-container-low rounded-xl border border-outline-variant/15">
                   <span className="text-on-surface-variant block">Usuario Titular</span>
@@ -824,7 +824,7 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
               </div>
             </div>
 
-            <div className="p-3.5 bg-surface-container-low flex items-center justify-between border-t border-outline-variant/20">
+            <div className="p-3.5 bg-surface-container-low flex items-center justify-between gap-2 border-t border-outline-variant/20 shrink-0">
               {onLogout ? (
                 <button
                   type="button"

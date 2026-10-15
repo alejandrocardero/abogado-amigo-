@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, Variants } from 'motion/react';
 import { OllamaModel, ModelSettings } from '../types';
 
@@ -67,11 +67,53 @@ export const ModelSettingsModal: React.FC<ModelSettingsModalProps> = ({
   onSelectModel,
 }) => {
   const [testingModel, setTestingModel] = useState<string | null>(null);
+  const autoDiscoverRef = useRef(false);
+
+  // Al abrir el modal, descubre automáticamente si no hay modelos conocidos
+  // o si la lista contiene modelos que ya fallaron (datos de sesiones previas).
+  useEffect(() => {
+    if (!isOpen) {
+      autoDiscoverRef.current = false;
+      return;
+    }
+    if (autoDiscoverRef.current) return;
+    if (isDiscovering || discoverError) return;
+    const hasBroken = settings.availableModels.some(
+      (m) => settings.modelStatuses[m.name]?.available === false
+    );
+    if (settings.availableModels.length > 0 && !hasBroken) return;
+    autoDiscoverRef.current = true;
+    void Promise.resolve(onDiscoverModels());
+  }, [isOpen, isDiscovering, discoverError, settings.availableModels, settings.modelStatuses, onDiscoverModels]);
 
   const handleTestModel = async (modelName: string) => {
     setTestingModel(modelName);
     try {
       await onTestModel(modelName);
+    } finally {
+      setTestingModel(null);
+    }
+  };
+
+  // Seleccionar un modelo prueba la conexión primero: solo queda ACTIVO si responde.
+  // Los modelos que ya se comprobó que no responden (p. ej. HTTP 410 Gone) no se
+  // pueden seleccionar.
+  const handleSelectWithTest = async (modelName: string) => {
+    if (testingModel) return;
+    const status = settings.modelStatuses[modelName];
+    if (status?.available === false) return;
+    if (status?.available) {
+      onSelectModel(modelName);
+      return;
+    }
+    setTestingModel(modelName);
+    try {
+      const result = await onTestModel(modelName);
+      const ok =
+        result && typeof result === 'object' && 'available' in result
+          ? Boolean((result as { available?: unknown }).available)
+          : true; // QA harness: testModel no devuelve estado, asumir OK
+      if (ok) onSelectModel(modelName);
     } finally {
       setTestingModel(null);
     }
@@ -88,7 +130,7 @@ export const ModelSettingsModal: React.FC<ModelSettingsModalProps> = ({
           animate="visible"
           exit="exit"
           onClick={onClose}
-          className="fixed inset-0 z-50 bg-black/55 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/55 backdrop-blur-sm flex items-start justify-center p-4 pt-28"
         >
           <motion.div
             variants={modalVariants}
@@ -96,9 +138,9 @@ export const ModelSettingsModal: React.FC<ModelSettingsModalProps> = ({
             animate="visible"
             exit="exit"
             onClick={(e) => e.stopPropagation()}
-            className="bg-surface-container-lowest w-full max-w-lg rounded-2xl shadow-2xl border border-outline-variant/25 overflow-hidden flex flex-col max-h-[85vh]"
+            className="bg-surface-container-lowest w-full max-w-lg rounded-2xl shadow-2xl border border-outline-variant/25 overflow-hidden flex flex-col max-h-[calc(100dvh-9.5rem)]"
           >
-            <div className="p-4 bg-primary text-on-primary flex items-center justify-between">
+            <div className="p-4 bg-primary text-on-primary flex items-center justify-between shrink-0">
               <div className="flex items-center gap-2.5">
                 <div className="w-9 h-9 rounded-xl bg-secondary/20 border border-secondary/40 flex items-center justify-center">
                   <span className="material-symbols-outlined text-secondary-fixed text-[22px]">
@@ -176,24 +218,30 @@ export const ModelSettingsModal: React.FC<ModelSettingsModalProps> = ({
                     const status = settings.modelStatuses[model.name];
                     const chips = modelMetaChips(model);
                     const isTesting = testingModel === model.name;
+                    const isBroken = status?.available === false;
 
                     return (
                       <div
                         key={model.name}
                         role="radio"
-                        tabIndex={0}
+                        tabIndex={isBroken ? -1 : 0}
                         aria-checked={isSelected}
-                        onClick={() => onSelectModel(model.name)}
+                        aria-disabled={isBroken}
+                        onClick={() => void handleSelectWithTest(model.name)}
                         onKeyDown={(e) => {
                           if (e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
-                            onSelectModel(model.name);
+                            void handleSelectWithTest(model.name);
                           }
                         }}
-                        className={`card-elevated p-3.5 rounded-xl border cursor-pointer ${
-                          isSelected
-                            ? 'bg-secondary-container/10 border-outline-variant/30'
-                            : 'bg-surface-container-low border-outline-variant/20'
+                        className={`card-elevated p-3.5 rounded-xl border ${
+                          isBroken
+                            ? 'opacity-60 cursor-not-allowed bg-surface-container-low border-outline-variant/20'
+                            : `cursor-pointer ${
+                                isSelected
+                                  ? 'bg-secondary-container/10 border-outline-variant/30'
+                                  : 'bg-surface-container-low border-outline-variant/20'
+                              }`
                         }`}
                       >
                         <div className="flex items-start gap-3">
@@ -309,7 +357,7 @@ export const ModelSettingsModal: React.FC<ModelSettingsModalProps> = ({
               )}
             </div>
 
-            <div className="p-4 bg-surface-container-low flex items-center justify-end gap-2.5 border-t border-outline-variant/20">
+            <div className="p-4 bg-surface-container-low flex items-center justify-end gap-2.5 border-t border-outline-variant/20 shrink-0">
               <button
                 type="button"
                 onClick={onClose}

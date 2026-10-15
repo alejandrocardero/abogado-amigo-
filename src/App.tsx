@@ -20,22 +20,8 @@ import {
   ComparativeTableModal,
   NotificationsModal,
   ProfileModal,
-  EstatutoModal,
-  ObligacionModal,
-  SeguridadSocialModal,
 } from './components/Modals';
-import { LegalCitation, LegalOpinion, NavTab, UserProfile, LawCatalogItem, Jurisdiction } from './types';
-import {
-  StatuteContent,
-  ObligationContent,
-  SeguridadSocialContent,
-} from './data/graphFlowContent';
-import {
-  ResolvedStatuteData,
-  ResolvedObligationData,
-  ResolvedSeguridadSocialData,
-  resolveGraphFlowDataFromLabel,
-} from './lib/graphFlowContent';
+import { LegalCitation, LegalOpinion, NavTab, UserProfile, LawCatalogItem } from './types';
 import storage, { getActiveUser, getAccount, buildProfileFromAccount, setUser } from './lib/db';
 
 export default function App() {
@@ -55,11 +41,6 @@ export default function App() {
   const [isComparativeOpen, setIsComparativeOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-
-  // GraphRAG Flow Modals
-  const [estatutoContent, setEstatutoContent] = useState<ResolvedStatuteData | null>(null);
-  const [obligacionContent, setObligacionContent] = useState<ResolvedObligationData | null>(null);
-  const [seguridadSocialContent, setSeguridadSocialContent] = useState<ResolvedSeguridadSocialData | null>(null);
 
   const handleAuthenticated = (profile: UserProfile) => {
     setUserProfile(profile);
@@ -88,35 +69,6 @@ export default function App() {
     storage.ui.setTab('leyes');
     handleSelectLaw(law);
   };
-
-  // GraphRAG Flow Modal Handlers
-  const openEstatutoModal = (label: string) => {
-    const jurisdiction = userProfile?.country ?? 'MX';
-    const data = resolveGraphFlowDataFromLabel(label, jurisdiction);
-    if (data && 'articles' in data) {
-      setEstatutoContent(data);
-    }
-  };
-
-  const openObligacionModal = (label: string) => {
-    const jurisdiction = userProfile?.country ?? 'MX';
-    const data = resolveGraphFlowDataFromLabel(label, jurisdiction);
-    if (data && 'steps' in data) {
-      setObligacionContent(data);
-    }
-  };
-
-  const openSeguridadSocialModal = (label: string) => {
-    const jurisdiction = userProfile?.country ?? 'MX';
-    const data = resolveGraphFlowDataFromLabel(label, jurisdiction);
-    if (data && 'requirements' in data) {
-      setSeguridadSocialContent(data);
-    }
-  };
-
-  const closeEstatutoModal = () => setEstatutoContent(null);
-  const closeObligacionModal = () => setObligacionContent(null);
-  const closeSeguridadSocialModal = () => setSeguridadSocialContent(null);
 
   return (
     <AnimatePresence mode="wait">
@@ -164,9 +116,6 @@ export default function App() {
                     onOpenCitation={(c) => setSelectedCitation(c)}
                     onOpenDictamen={(o) => setSelectedDictamen(o)}
                     onNavigateToLaw={navigateToLaw}
-                    onOpenEstatuto={openEstatutoModal}
-                    onOpenObligacion={openObligacionModal}
-                    onOpenSeguridadSocial={openSeguridadSocialModal}
                   />
                 )}
 
@@ -228,24 +177,6 @@ export default function App() {
             onClose={() => setIsProfileOpen(false)}
             userProfile={userProfile}
             onLogout={handleLogout}
-          />
-
-          <EstatutoModal
-            content={estatutoContent}
-            onClose={closeEstatutoModal}
-            onNavigateToLaw={navigateToLaw}
-          />
-
-          <ObligacionModal
-            content={obligacionContent}
-            onClose={closeObligacionModal}
-            onNavigateToLaw={navigateToLaw}
-          />
-
-          <SeguridadSocialModal
-            content={seguridadSocialContent}
-            onClose={closeSeguridadSocialModal}
-            onNavigateToLaw={navigateToLaw}
           />
         </motion.div>
       )}
