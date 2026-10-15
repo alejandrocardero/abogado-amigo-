@@ -8,3 +8,12 @@ coverage/
 !.env.example
 .omo/
 .playwright-mcp/
+
+# QA local: evidencias y harnesses no indispensables para despliegue
+/*.png
+qa-*.mjs
+harness.html
+src/harness.tsx
+qa-model-settings.html
+src/qa-model-settings.tsx
+test_body.json
